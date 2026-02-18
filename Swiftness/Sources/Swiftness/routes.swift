@@ -41,7 +41,7 @@ func routes(_ app: Application) throws {
             guard let path = Bundle.module.path(forResource: "openapi", ofType: "yaml") else {
                 throw Abort(.notFound, reason: "번들에서 openapi.yaml을 찾을 수 없습니다.")
             }
-            return req.fileio.streamFile(at: path)
+            return try await req.fileio.asyncStreamFile(at: path)
         }
     
 //    app.get { req async in
