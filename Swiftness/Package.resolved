@@ -1,5 +1,5 @@
 {
-  "originHash" : "92bdba03c61ecf76df32ef3ed43536b25502ba034e403f373c7593fe4522b0df",
+  "originHash" : "abbdb076f6af687825e68791845cac75bf624c24834a17d2d0217da543d5102b",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -65,6 +65,15 @@
       }
     },
     {
+      "identity" : "openapikit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mattpolzin/OpenAPIKit",
+      "state" : {
+        "revision" : "343b2c1793058fcc53c1bd7e2907f8e3a4d640fb",
+        "version" : "3.9.0"
+      }
+    },
+    {
       "identity" : "postgres-kit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/vapor/postgres-kit.git",
@@ -107,6 +116,15 @@
       "state" : {
         "revision" : "87e50f483c54e6efd60e885f7f5aa946cee68023",
         "version" : "1.2.1"
+      }
+    },
+    {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser",
+      "state" : {
+        "revision" : "c5d11a805e765f52ba34ec7284bd4fcd6ba68615",
+        "version" : "1.7.0"
       }
     },
     {
@@ -272,6 +290,33 @@
       }
     },
     {
+      "identity" : "swift-openapi-generator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-openapi-generator",
+      "state" : {
+        "revision" : "ecf21fdf08d4cf30ca506bb822f5fe580e090efb",
+        "version" : "1.10.4"
+      }
+    },
+    {
+      "identity" : "swift-openapi-runtime",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-openapi-runtime",
+      "state" : {
+        "revision" : "7cdf33371bf89b23b9cf4fd3ce8d3c825c28fbe8",
+        "version" : "1.9.0"
+      }
+    },
+    {
+      "identity" : "swift-openapi-vapor",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/swift-openapi-vapor",
+      "state" : {
+        "revision" : "b53c1517e889d5479567729fbe143a59da302ffc",
+        "version" : "1.0.1"
+      }
+    },
+    {
       "identity" : "swift-service-context",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-service-context.git",
@@ -314,6 +359,15 @@
       "state" : {
         "revision" : "8666c92dbbb3c8eefc8008c9c8dcf50bfd302167",
         "version" : "2.16.1"
+      }
+    },
+    {
+      "identity" : "yams",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jpsim/Yams",
+      "state" : {
+        "revision" : "deaf82e867fa2cbd3cd865978b079bfcf384ac28",
+        "version" : "6.2.1"
       }
     }
   ],
