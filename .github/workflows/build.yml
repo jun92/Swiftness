@@ -19,8 +19,9 @@ jobs:
         path: |
           ./Swiftness/.swiftpm/
           ./Swiftness/.build/
-        key: ${{ runner.os }}-swift-${{ hashFiles('Package.resolved') }}
+        key: ${{ runner.os }}-swift-${{ hashFiles('Swiftness/Package.resolved') }}-${{ github.sha }}
         restore-keys: |
+          ${{ runner.os }}-swift-${{ hashFiles('Swiftness/Package.resolved') }}-
           ${{ runner.os }}-swift-
     - name: Setup Swift
       uses: swift-actions/setup-swift@v2
