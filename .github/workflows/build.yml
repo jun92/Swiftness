@@ -13,6 +13,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Cache Swift PM dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ./Swiftness/.swiftpm/
+          ./Swiftness/.build/
+        key: ${{ runner.os }}-swift-${{ hashFiles('Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-swift-
     - name: Setup Swift
       uses: swift-actions/setup-swift@v2
     - name: Check Swift Version
