@@ -4,3 +4,10 @@ updates:
     directory: "/Swiftness"
     schedule:
       interval: "weekly"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
