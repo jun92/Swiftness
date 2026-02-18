@@ -37,11 +37,11 @@ func routes(_ app: Application) throws {
         return Response(status: .ok, headers: ["Content-Type": "text/html"], body: .init(string: html))
     }
     app.get("openapi.yaml") { req -> Response in
-            // Bundle.module을 사용하여 번들 내 파일 경로를 동적으로 찾습니다.
+            // Use Bundle.module to dynamically find the path to the bundled file.
             guard let path = Bundle.module.path(forResource: "openapi", ofType: "yaml") else {
-                throw Abort(.notFound, reason: "번들에서 openapi.yaml을 찾을 수 없습니다.")
+                throw Abort(.notFound, reason: "Could not find openapi.yaml in the bundle.")
             }
-            return try await req.fileio.asyncStreamFile(at: path)
+            return req.fileio.streamFile(at: path)
         }
     
 //    app.get { req async in
