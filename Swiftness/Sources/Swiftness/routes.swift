@@ -8,9 +8,6 @@ func routes(_ app: Application) throws {
     let handler = SwiftnessHandler()
     try handler.registerHandlers(on: transport)
     
-    
-    print("현재 작업 디렉토리: \(app.directory.workingDirectory)")
-    
     app.get("swagger") { req -> Response in
         let html = """
         <!DOCTYPE html>
@@ -41,7 +38,7 @@ func routes(_ app: Application) throws {
             guard let path = Bundle.module.path(forResource: "openapi", ofType: "yaml") else {
                 throw Abort(.notFound, reason: "Could not find openapi.yaml in the bundle.")
             }
-            return req.fileio.streamFile(at: path)
+            return try await req.fileio.asyncStreamFile(at: path)
         }
     
 //    app.get { req async in
