@@ -1,7 +1,6 @@
 # This workflow will build a Swift project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
-
-name: Swift
+name: Build
 
 on:
   push:
@@ -14,6 +13,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v2
+    - name: Check Swift Version
+      run: swift --version
     - name: Build
       run: swift build -v
     
