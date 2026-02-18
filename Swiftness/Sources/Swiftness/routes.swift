@@ -26,7 +26,7 @@ func routes(_ app: Application) throws {
           <script>
             window.onload = () => {
               window.ui = SwaggerUIBundle({
-                url: '/openapi.yaml', // yaml 경로
+                url: '/openapi.yaml', // Path to the OpenAPI spec file
                 dom_id: '#swagger-ui',
               });
             };
