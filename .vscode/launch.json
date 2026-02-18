@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:Swiftness}/Swiftness",
+            "name": "Debug Swiftness (Swiftness)",
+            "target": "Swiftness",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug Swiftness (Swiftness)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:Swiftness}/Swiftness",
+            "name": "Release Swiftness (Swiftness)",
+            "target": "Swiftness",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release Swiftness (Swiftness)"
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+openapi: '3.0.3'
+info:
+  title: Swiftness API
+  version: '0.1a'
+tags:
+  - name: "Monitoring"
+    description: "Monitoring APIs"
+servers:
+  - url: http://localhost:8080
+    description: 'Local dev server'
+paths:
+  /healthcheck:
+    get:
+      summary: 'Checking the server is alive'
+      operationId: healthCheck
+      tags:
+        - "Monitoring"
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Error
+
+components:
+  
