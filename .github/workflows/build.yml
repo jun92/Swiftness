@@ -5,7 +5,9 @@ name: Build
 on:
   push:
     branches: [ "*" ]
-  
+env:
+  SCCACHE_GHA_ENABLED: "true"
+  SWIFTC_WRAPPER: sccache  
 jobs:
   build:
 
@@ -13,6 +15,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    
+    - name: Run sccache-cache
+      uses: mozilla-actions/sccache-action@v0.0.3
+      
     - name: Cache Swift PM dependencies
       uses: actions/cache@v4
       with:
@@ -23,11 +29,17 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-swift-${{ hashFiles('Swiftness/Package.resolved') }}
           ${{ runner.os }}-swift
+          
     - name: Setup Swift
       uses: swift-actions/setup-swift@v2
+      
     - name: Check Swift Version
       run: swift --version
+      
     - name: Build
       working-directory: ./Swiftness/
-      run: swift build -v
+      run: |
+        sccache --zero-stats
+        swift build -v -c release
+        sccache --show-stats
     
