@@ -59,6 +59,13 @@ jobs:
         CC: "sccache clang"
         CXX: "sccache clang++"
       run: |
+        mkdir -p extra-bin
+        ln -s $(which sccache) extra-bin/swiftc
+        ln -s $(which sccache) extra-bin/clang
+        ln -s $(which sccache) extra-bin/clang++
+        
+        # 2. PATH 최상단에 추가 (강제 주입)
+        export PATH=$(pwd)/extra-bin:$PATH
         sccache --start-server
         sccache --zero-stats
         swift build -v -c release
