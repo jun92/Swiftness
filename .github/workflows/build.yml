@@ -19,7 +19,7 @@ jobs:
         path: |
           ./Swiftness/.swiftpm/
           ./Swiftness/.build/
-        key: ${{ runner.os }}-swift-${{ hashFiles('Swiftness/Package.resolved') }}-${{ github.sha }}
+        key: ${{ runner.os }}-swift-${{ hashFiles('Swiftness/Package.resolved') }}
         restore-keys: |
           ${{ runner.os }}-swift-${{ hashFiles('Swiftness/Package.resolved') }}-
           ${{ runner.os }}-swift-
