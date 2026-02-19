@@ -53,6 +53,7 @@ jobs:
       with:
         working-directory: ./Swiftness/
         configuration: release
+        build-only: true
       
     # - name: Build
     #   working-directory: ./Swiftness/
