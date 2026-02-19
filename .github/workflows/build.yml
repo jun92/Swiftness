@@ -27,9 +27,12 @@ jobs:
         path: |
           ./Swiftness/.build
           ./Swiftness/.swiftpm
-        key: ${{ runner.os }}-swiftness-${{ hashFiles('Swiftness/Package.resolved') }}
+          ./Swiftness/.build/plugins 
+          ./Swiftness/.build/artifacts
+          ~/.swiftpm
+        key: ${{ runner.os }}-swiftness-${{ hashFiles('Swiftness/Package.resolved', '**/openapi.yaml') }}
         restore-keys: |
-          ${{ runner.os }}-swiftness-${{ hashFiles('Swiftness/Package.resolved') }}
+          ${{ runner.os }}-swiftness-${{ hashFiles('Swiftness/Package.resolved', '**/openapi.yaml') }}
       
     - name: Check Swift Version
       run: swift --version
