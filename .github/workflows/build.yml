@@ -23,9 +23,8 @@ jobs:
     
     - name: Restore timestamps
       run: |
-        sudo apt-get install -y python3-pip
-        sudo pip3 install git-restore-mtime
-        git restore-mtime
+        curl -sSL https://raw.githubusercontent.com/Marmoute/git-restore-mtime/master/git-restore-mtime -o git-restore-mtime
+        python3 git-restore-mtime
         
     - name: Install sccache
       run: |
