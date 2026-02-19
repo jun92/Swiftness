@@ -5,12 +5,6 @@ name: Build
 on:
   push:
     branches: [ "*" ]
-env:
-  SCCACHE_GHA_ENABLED: "false"
-  SCCACHE_DIR: ${{ github.workspace }}/.sccache
-  SWIFTC_WRAPPER: sccache  
-  SCCACHE_LOG: debug
-  SCCACHE_NO_DAEMON: 1
 jobs:
   build:
 
@@ -21,55 +15,63 @@ jobs:
       with:
         fetch-depth: 0
     
-    - name: Restore timestamps
-      uses: chetan/git-restore-mtime-action@v2
+    # - name: Restore timestamps
+    #   uses: chetan/git-restore-mtime-action@v2
         
-    - name: Install sccache
-      run: |
-        SCCACHE_VERSION=v0.8.2
-        curl -L "https://github.com/mozilla/sccache/releases/download/$SCCACHE_VERSION/sccache-$SCCACHE_VERSION-x86_64-unknown-linux-musl.tar.gz" | tar xz
-        sudo mv sccache-$SCCACHE_VERSION-x86_64-unknown-linux-musl/sccache /usr/local/bin/
-        chmod +x /usr/local/bin/sccache
+    # - name: Install sccache
+    #   run: |
+    #     SCCACHE_VERSION=v0.8.2
+    #     curl -L "https://github.com/mozilla/sccache/releases/download/$SCCACHE_VERSION/sccache-$SCCACHE_VERSION-x86_64-unknown-linux-musl.tar.gz" | tar xz
+    #     sudo mv sccache-$SCCACHE_VERSION-x86_64-unknown-linux-musl/sccache /usr/local/bin/
+    #     chmod +x /usr/local/bin/sccache
     
     # - name: Run sccache-cache
     #   uses: mozilla-actions/sccache-action@v0.0.3
       
-    - name: Cache Swift PM dependencies
-      uses: actions/cache@v4
-      with:
-        path: |
-          ./Swiftness/.swiftpm/
-          ./Swiftness/.build/
-          ${{ github.workspace }}/.sccache
-        key: ${{ runner.os }}-swift-${{ hashFiles('Swiftness/Package.resolved') }}
-        restore-keys: |
-          ${{ runner.os }}-swift-${{ hashFiles('Swiftness/Package.resolved') }}
-          ${{ runner.os }}-swift
+    # - name: Cache Swift PM dependencies
+    #   uses: actions/cache@v4
+    #   with:
+    #     path: |
+    #       ./Swiftness/.swiftpm/
+    #       ./Swiftness/.build/
+    #       ${{ github.workspace }}/.sccache
+    #     key: ${{ runner.os }}-swift-${{ hashFiles('Swiftness/Package.resolved') }}
+    #     restore-keys: |
+    #       ${{ runner.os }}-swift-${{ hashFiles('Swiftness/Package.resolved') }}
+    #       ${{ runner.os }}-swift
           
     - name: Setup Swift
       uses: swift-actions/setup-swift@v2
+      with:
+        cache: true
       
     - name: Check Swift Version
       run: swift --version
+    
+    - name: Build Project
+      uses: swift-actions/swift-build@v2
+      with:
+        working-directory: ./Swiftness/
+        configuration: release
       
-    - name: Build
-      working-directory: ./Swiftness/
-      env:
-        SWIFT_DRIVER_SWIFTC_WRAPPER: sccache
-        CC: "sccache clang"
-        CXX: "sccache clang++"
-      run: |
-        mkdir -p extra-bin
-        ln -s $(which sccache) extra-bin/swiftc
-        ln -s $(which sccache) extra-bin/clang
-        ln -s $(which sccache) extra-bin/clang++
+    # - name: Build
+    #   working-directory: ./Swiftness/
+    #   env:
+    #     SWIFT_DRIVER_SWIFTC_WRAPPER: sccache
+    #     CC: "sccache clang"
+    #     CXX: "sccache clang++"
+    #   run: |
+    #     mkdir -p extra-bin
+    #     ln -s $(which sccache) extra-bin/swiftc
+    #     ln -s $(which sccache) extra-bin/clang
+    #     ln -s $(which sccache) extra-bin/clang++
         
-        # 2. PATH 최상단에 추가 (강제 주입)
-        export PATH=$(pwd)/extra-bin:$PATH
-        sccache --start-server
-        sccache --zero-stats
-        export SWIFT_EXEC=$(pwd)/extra-bin/swiftc
-        swift build -v -c release
-        sccache --show-stats
-        sccache --stop-server
+    #     # 2. PATH 최상단에 추가 (강제 주입)
+    #     export PATH=$(pwd)/extra-bin:$PATH
+    #     sccache --start-server
+    #     sccache --zero-stats
+    #     export SWIFT_EXEC=$(pwd)/extra-bin/swiftc
+    #     swift build -v -c release
+    #     sccache --show-stats
+    #     sccache --stop-server
     
