@@ -26,7 +26,7 @@ jobs:
     - name: Build Project
       uses: brightdigit/swift-build@v1
       with:
-        # working-directory: ./Swiftness/
+        working-directory: ./Swiftness/
         scheme: Swiftness
         build-only: true
       
