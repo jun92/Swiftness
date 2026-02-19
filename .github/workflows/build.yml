@@ -52,7 +52,7 @@ jobs:
       uses: brightdigit/swift-build@v1
       with:
         working-directory: ./Swiftness/
-        configuration: release
+        schema: Swiftness
         build-only: true
       
     # - name: Build
