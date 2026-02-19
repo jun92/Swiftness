@@ -49,7 +49,7 @@ jobs:
       run: swift --version
     
     - name: Build Project
-      uses: swift-actions/swift-build@v2
+      uses: brightdigit/swift-build@v2
       with:
         working-directory: ./Swiftness/
         configuration: release
