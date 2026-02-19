@@ -68,7 +68,8 @@ jobs:
         export PATH=$(pwd)/extra-bin:$PATH
         sccache --start-server
         sccache --zero-stats
-        swift build -v -c release
+        export SWIFT_EXEC=$(pwd)/extra-bin/swiftc
+        swift build -v -c release --incremental
         sccache --show-stats
         sccache --stop-server
     
