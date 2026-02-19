@@ -21,8 +21,8 @@ jobs:
           ./Swiftness/.build/
         key: ${{ runner.os }}-swift-${{ hashFiles('Swiftness/Package.resolved') }}
         restore-keys: |
-          ${{ runner.os }}-swift-${{ hashFiles('Swiftness/Package.resolved') }}-
-          ${{ runner.os }}-swift-
+          ${{ runner.os }}-swift-${{ hashFiles('Swiftness/Package.resolved') }}
+          ${{ runner.os }}-swift
     - name: Setup Swift
       uses: swift-actions/setup-swift@v2
     - name: Check Swift Version
