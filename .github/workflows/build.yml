@@ -22,9 +22,7 @@ jobs:
         fetch-depth: 0
     
     - name: Restore timestamps
-      run: |
-        curl -sSL https://raw.githubusercontent.com/Marmoute/git-restore-mtime/master/git-restore-mtime -o git-restore-mtime
-        python3 git-restore-mtime
+      uses: chetan/git-restore-mtime-action@v2
         
     - name: Install sccache
       run: |
