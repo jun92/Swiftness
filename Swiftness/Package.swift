@@ -29,7 +29,8 @@ let package = Package(
             ],
             path: "Sources/Swiftness",
             resources: [
-                .process("openapi.yaml")
+                .process("openapi.yaml"),
+                .process("swagger.html")
             ],
             swiftSettings: swiftSettings,
             plugins: [
