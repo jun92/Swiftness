@@ -6,6 +6,7 @@ func routes(_ app: Application) throws {
     
     let transport = VaporTransport(routesBuilder: app)
     let handler = SwiftnessHandler()
+    
     try handler.registerHandlers(on: transport)
     
     app.get("swagger") { req -> Response in

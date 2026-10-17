@@ -20,6 +20,7 @@ paths:
           description: OK
         '500':
           description: Error
+  /api/v1/
 
 components:
   
